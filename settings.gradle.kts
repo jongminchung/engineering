@@ -19,9 +19,9 @@ plugins {
 rootProject.name = "java-platform"
 include("app", "list", "utilities")
 
-include("coding-test", "kafka")
-
 includeModule("odata", "odata-core", "odata-spring")
+
+includeModule("study", "kafka", "postgresql", "coding-test")
 
 fun includeModule(
     subdir: String,
