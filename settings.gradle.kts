@@ -17,7 +17,9 @@ plugins {
 }
 
 rootProject.name = "java-platform"
-include("app", "list", "utilities", "algorithm", "kafka")
+include("app", "list", "utilities")
+
+include("coding-test", "kafka")
 
 includeModule("odata", "odata-core", "odata-spring")
 
