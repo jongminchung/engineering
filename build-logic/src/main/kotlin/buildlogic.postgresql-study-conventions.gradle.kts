@@ -4,8 +4,8 @@ plugins {
 
 dependencies {
     // PostgreSQL Driver
-    runtimeOnly(Dependencies.POSTGRESQL_DRIVER)
+    runtimeOnly(libs.findLibrary("postgresql").get())
 
     // Testcontainers PostgreSQL Module
-    testImplementation(Dependencies.TESTCONTAINERS_POSTGRESQL)
+    testImplementation(libs.findLibrary("testcontainers-postgresql").get())
 }

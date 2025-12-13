@@ -1,45 +1,19 @@
-/*
- * Kafka 학습용 컨벤션 플러그인
- * - Kafka Client 및 Spring Kafka 의존성
- * - TestContainers를 이용한 통합 테스트 환경
- * - JSON 직렬화 및 로깅 설정
- */
-
 plugins {
-    id("buildlogic.java-common-conventions")
+    id("buildlogic.testcontainers-conventions")
+
     `java-library`
 }
 
 dependencies {
-    // Kafka Client
-    implementation(Dependencies.KAFKA_CLIENT)
+    implementation(libs.findLibrary("spring-kafka").get())
 
-    // Spring Kafka (Optional)
-    implementation(Dependencies.SPRING_KAFKA)
-
-    // JSON 직렬화
-    implementation(Dependencies.JACKSON_DATA_BIND)
-
-    // Logging
-    implementation(Dependencies.SLF4jAPI)
-    runtimeOnly(Dependencies.LOGBACK_CLASSIC)
-
-    // TestContainers
-    testImplementation(platform(Dependencies.TESTCONTAINERS_BOM))
-    testImplementation(Dependencies.TESTCONTAINERS_CORE)
-    testImplementation(Dependencies.TESTCONTAINERS_KAFKA)
-    testImplementation(Dependencies.TESTCONTAINERS_JUNIT_JUPITER)
-
-    // Test Utilities
-    testImplementation(Dependencies.AWAITILITY)
+    testImplementation(libs.findLibrary("testcontainers-kafka").get())
+    testImplementation(libs.findLibrary("awaitility").get())
 }
 
 // 테스트 설정
 tasks.test {
     useJUnitPlatform()
-
-    // TestContainers를 위한 시스템 속성
-    systemProperty("testcontainers.reuse.enable", "false")
 
     // 테스트 로그 출력
     testLogging {

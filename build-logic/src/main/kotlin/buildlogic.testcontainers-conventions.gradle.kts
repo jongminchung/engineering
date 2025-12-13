@@ -10,24 +10,17 @@ repositories {
 
 dependencies {
     // Spring Boot Starters (버전은 Spring Boot Plugin이 관리)
-    implementation(Dependencies.SPRING_BOOT_STARTER)
-    implementation(Dependencies.SPRING_BOOT_STATER_DATA_JPA)
+    implementation(libs.findLibrary("spring-boot-starter").get())
+    implementation(libs.findLibrary("spring-boot-starter-data-jpa").get())
 
-    // Testcontainers BOM (Bill of Materials)
-    testImplementation(platform(Dependencies.TESTCONTAINERS_BOM))
+    testImplementation(platform(libs.findLibrary("testcontainers-bom").get()))
 
-    // Testcontainers Core
-    testImplementation(Dependencies.TESTCONTAINERS_CORE)
-    testImplementation(Dependencies.TESTCONTAINERS_JUNIT_JUPITER)
+    testImplementation(libs.findBundle("testcontainers").get())
 
     // Spring Boot Test
-    testImplementation(Dependencies.SPRING_BOOT_STARTER_TEST) {
+    testImplementation(libs.findLibrary("spring-boot-starter-test").get()) {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-
-    // Logging
-    implementation(Dependencies.SLF4jAPI)
-    runtimeOnly(Dependencies.LOGBACK_CLASSIC)
 }
 
 
