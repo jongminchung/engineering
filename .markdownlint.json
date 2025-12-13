@@ -1,33 +1,23 @@
 {
-  "code-block-style": {
-    "style": "fenced"
-  },
-  "code-fence-style": {
-    "style": "backtick"
-  },
-  "emphasis-style": null,
-  "headings-style": {
-    "style": "atx"
-  },
-  "hr-style": {
-    "style": "---"
-  },
-  "ul-style": null,
-  "line-length": null,
-  "no-duplicate-heading": null,
-  "blanks-around-lists": null,
-  "no-multiple-blanks": null,
-  "no-emphasis-as-heading": null,
-  "blanks-around-fences": null,
-  "blanks-around-headings": null,
-  "heading-increment": null,
-  "no-inline-html": null,
-  "no-hard-tabs": null,
-  "fenced-code-language": null,
-  "ul-indent": null,
-  "first-line-heading": null,
-  "no-bare-urls": null,
-  "ol-prefix": {
-    "style": "one_or_ordered"
-  }
+  "default": true,
+
+  "MD046": { "style": "fenced" },
+  "MD048": { "style": "backtick" },
+  "MD035": { "style": "---" },
+  "MD029": { "style": "one_or_ordered" },
+
+  "MD013": false,
+  "MD024": false,
+  "MD032": false,
+  "MD012": false,
+  "MD036": false,
+  "MD047": false,
+  "MD022": false,
+  "MD001": false,
+  "MD033": false,
+  "MD010": false,
+  "MD040": false,
+  "MD007": false,
+  "MD041": false,
+  "MD034": false
 }
