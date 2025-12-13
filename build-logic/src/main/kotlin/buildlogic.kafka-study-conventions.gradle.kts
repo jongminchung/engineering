@@ -10,34 +10,28 @@ plugins {
     `java-library`
 }
 
-// Kafka 관련 버전 관리
-val kafkaVersion = "3.6.1"
-val springKafkaVersion = "3.1.1"
-val testcontainersVersion = "1.19.3"
-val jacksonVersion = "2.16.0"
-val awaitilityVersion = "4.2.0"
-
 dependencies {
     // Kafka Client
-    implementation("org.apache.kafka:kafka-clients:$kafkaVersion")
+    implementation(Dependencies.KAFKA_CLIENT)
 
     // Spring Kafka (Optional)
-    implementation("org.springframework.kafka:spring-kafka:$springKafkaVersion")
+    implementation(Dependencies.SPRING_KAFKA)
 
     // JSON 직렬화
-    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation(Dependencies.JACKSON_DATA_BIND)
 
     // Logging
-    implementation("org.slf4j:slf4j-api:2.0.9")
-    runtimeOnly("ch.qos.logback:logback-classic:1.4.14")
+    implementation(Dependencies.SLF4jAPI)
+    runtimeOnly(Dependencies.LOGBACK_CLASSIC)
 
     // TestContainers
-    testImplementation("org.testcontainers:testcontainers:$testcontainersVersion")
-    testImplementation("org.testcontainers:kafka:$testcontainersVersion")
-    testImplementation("org.testcontainers:junit-jupiter:$testcontainersVersion")
+    testImplementation(platform(Dependencies.TESTCONTAINERS_BOM))
+    testImplementation(Dependencies.TESTCONTAINERS_CORE)
+    testImplementation(Dependencies.TESTCONTAINERS_KAFKA)
+    testImplementation(Dependencies.TESTCONTAINERS_JUNIT_JUPITER)
 
     // Test Utilities
-    testImplementation("org.awaitility:awaitility:$awaitilityVersion")
+    testImplementation(Dependencies.AWAITILITY)
 }
 
 // 테스트 설정

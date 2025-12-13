@@ -12,4 +12,10 @@ plugins {
 repositories {
     // Use the plugin portal to apply community plugins in convention plugins.
     gradlePluginPortal()
+    mavenCentral()
+}
+
+dependencies {
+    implementation(libs.spring.boot.gradle.plugin)
+    implementation(libs.spring.dependency.management.plugin)
 }

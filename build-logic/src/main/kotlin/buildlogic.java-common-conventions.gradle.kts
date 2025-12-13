@@ -17,7 +17,7 @@ repositories {
 dependencies {
     constraints {
         // Define dependency versions as constraints
-        implementation("org.apache.commons:commons-text:1.13.0")
+        implementation(Dependencies.COMMONS_TEXT)
     }
 }
 
@@ -26,11 +26,11 @@ testing {
         // Configure the built-in test suite
         val test by getting(JvmTestSuite::class) {
             // Use JUnit Jupiter test framework
-            useJUnitJupiter("6.0.1")
+            useJUnitJupiter(Versions.JUNIT)
 
             // Shared assertion library for all projects
             dependencies {
-                implementation("org.assertj:assertj-core:3.27.6")
+                implementation(Dependencies.ASSERTJ_CORE)
             }
         }
     }
