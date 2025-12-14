@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -63,6 +65,30 @@ class OrderControllerTest {
 
         mockMvc.perform(authorized(post("/api/v1/orders").contentType(MediaType.APPLICATION_JSON).content(payload)))
                 .andExpect(status().isTooManyRequests());
+    }
+
+    @Test
+    void createOrderRespondsWithKoreanContentLanguage() throws Exception {
+        String payload = objectMapper.writeValueAsString(sampleRequest());
+
+        mockMvc.perform(authorized(post("/api/v1/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.ACCEPT_LANGUAGE, "ko")
+                        .content(payload)))
+                .andExpect(status().isCreated())
+                .andExpect(header().string(HttpHeaders.CONTENT_LANGUAGE, "ko"));
+    }
+
+    @Test
+    void createOrderRespondsWithEnglishContentLanguage() throws Exception {
+        String payload = objectMapper.writeValueAsString(sampleRequest());
+
+        mockMvc.perform(authorized(post("/api/v1/orders")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.ACCEPT_LANGUAGE, "en-US")
+                        .content(payload)))
+                .andExpect(status().isCreated())
+                .andExpect(header().string(HttpHeaders.CONTENT_LANGUAGE, "en"));
     }
 
     private CreateOrderRequest sampleRequest() {
