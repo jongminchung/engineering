@@ -11,4 +11,5 @@ dependencies {
 
     // Flyway
     testImplementation("org.springframework.boot:spring-boot-starter-flyway")
+    testImplementation("org.flywaydb:flyway-database-postgresql")
 }

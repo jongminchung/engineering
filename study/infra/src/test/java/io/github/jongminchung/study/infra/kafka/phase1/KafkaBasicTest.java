@@ -1,4 +1,4 @@
-package io.github.jongminchung.kafka.phase1;
+package io.github.jongminchung.study.infra.kafka.phase1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import io.github.jongminchung.kafka.KafkaTestBase;
+import io.github.jongminchung.study.infra.kafka.KafkaTestBase;
 
 /**
  * Phase 1: 기본 개념 및 환경 구성 - Kafka 아키텍처 이해 (Broker, Topic, Partition, Replica) - Producer, Consumer, Consumer Group 개념

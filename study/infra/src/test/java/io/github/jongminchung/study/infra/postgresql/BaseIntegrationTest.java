@@ -1,4 +1,4 @@
-package io.github.jongminchung.postgresql.repository;
+package io.github.jongminchung.study.infra.postgresql;
 
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -12,14 +12,13 @@ public abstract class BaseIntegrationTest {
 
     // 1. 전체 테스트 스위트에서 컨테이너 1개만 사용
     @Container
-    static PostgreSQLContainer<?> postgres =
-            new PostgreSQLContainer<>(DockerImageName.parse("postgres:16-alpine")).withReuse(true);
+    public static PostgreSQLContainer<?> postgres =
+            new PostgreSQLContainer<>(DockerImageName.parse("postgres:18-alpine")).withReuse(true);
 
     @DynamicPropertySource
     static void configureProperties(DynamicPropertyRegistry registry) {
         registry.add("spring.datasource.url", postgres::getJdbcUrl);
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
-        registry.add("spring.jpa.hibernate.ddl-auto", () -> "none");
     }
 }

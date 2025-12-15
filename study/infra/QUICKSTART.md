@@ -49,13 +49,13 @@ build-logic에 Kafka 학습용 컨벤션 플러그인을 정의하고 kafka 모�
 ./gradlew :kafka:test
 
 # Phase 1 테스트만 실행
-./gradlew :kafka:test --tests "io.github.jongminchung.kafka.phase1.*"
+./gradlew :kafka:test --tests "io.github.jongminchung.study.infra.kafka.phase1.*"
 
 # 특정 테스트 클래스만 실행
-./gradlew :kafka:test --tests "io.github.jongminchung.kafka.phase1.KafkaBasicTest"
+./gradlew :kafka:test --tests "io.github.jongminchung.study.infra.kafka.phase1.KafkaBasicTest"
 
 # 특정 테스트 메서드만 실행
-./gradlew :kafka:test --tests "io.github.jongminchung.kafka.phase1.KafkaBasicTest.testSimpleProducerConsumer"
+./gradlew :kafka:test --tests "io.github.jongminchung.study.infra.kafka.phase1.KafkaBasicTest.testSimpleProducerConsumer"
 ```
 
 ---
@@ -75,7 +75,7 @@ build-logic에 Kafka 학습용 컨벤션 플러그인을 정의하고 kafka 모�
 ### Step 2: Phase 1 테스트 실행
 
 ```bash
-./gradlew :kafka:test --tests "io.github.jongminchung.kafka.phase1.*"
+./gradlew :kafka:test --tests "io.github.jongminchung.study.infra.kafka.phase1.*"
 ```
 
 ### Step 3: 테스트 코드 확인
@@ -145,7 +145,7 @@ mkdir -p kafka/src/test/java/io/github/jongminchung/kafka/phase2
 ```java
 package io.github.jongminchung.kafka.phase2;
 
-import io.github.jongminchung.kafka.KafkaTestBase;
+import io.github.jongminchung.study.infra.kafka.KafkaTestBase;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

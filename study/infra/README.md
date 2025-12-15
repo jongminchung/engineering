@@ -37,7 +37,7 @@ Kafka 학습을 위한 모듈입니다. TestContainers를 활용하여 실제 Ka
 ./gradlew :kafka:test
 
 # 특정 Phase 테스트만 실행
-./gradlew :kafka:test --tests "io.github.jongminchung.kafka.phase1.*"
+./gradlew :kafka:test --tests "io.github.jongminchung.study.infra.kafka.phase1.*"
 ```
 
 ## 프로젝트 구조

@@ -1,18 +1,19 @@
-package io.github.jongminchung.postgresql.repository;
+package io.github.jongminchung.study.infra.postgresql.phase1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Optional;
 
+import io.github.jongminchung.study.infra.postgresql.BaseIntegrationTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
-
-import io.github.jongminchung.postgresql.domain.User;
+import org.springframework.test.context.ContextConfiguration;
 
 @DataJpaTest
+@ContextConfiguration(classes = Phase1TestApplication.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserRepositoryTest extends BaseIntegrationTest {
 

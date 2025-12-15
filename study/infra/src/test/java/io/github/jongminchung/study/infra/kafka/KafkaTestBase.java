@@ -1,4 +1,4 @@
-package io.github.jongminchung.kafka;
+package io.github.jongminchung.study.infra.kafka;
 
 import java.util.Properties;
 
