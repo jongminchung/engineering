@@ -28,8 +28,8 @@ metadata:
     loadbalancer.openstack.org/availability-zone: KR1-Zone1-LB
     loadbalancer.openstack.org/enable-health-monitor: "true"
     service.beta.kubernetes.io/openstack-internal-load-balancer: "false"
-    # admission webhook "validate-service.k8s-webhook-server.svc" denied the request: invalid annotation values: [loadbalancer.openstack.org/default-tls-container-ref (value: default/cloudflare-tls, allowed: [^https://[^/]+/v1/secrets/[0-9a-fA-F-]{36}$])]
-    loadbalancer.openstack.org/default-tls-container-ref: "default/cloudflare-tls"
+    # SSL 인증서 콘솔에서 등록이 필요함.
+    loadbalancer.openstack.org/default-tls-container-ref: "https://external.gabiacloud.com:9311/v1/secrets/88750a57-9a44-41d5-bc89-602ab2b131f8"
 spec:
   type: LoadBalancer
   selector:
