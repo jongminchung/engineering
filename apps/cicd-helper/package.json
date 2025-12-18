@@ -1,0 +1,29 @@
+{
+  "name": "@cloud/cicd",
+  "version": "1.0.0",
+  "description": "CLI tools for GitLab team rules and other automations.",
+  "type": "module",
+  "bin": {
+    "cicd": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc --noEmit",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@gitbeaker/rest": "^43.8.0",
+    "build": "^0.1.4",
+    "commander": "^14.0.2",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.4",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}
