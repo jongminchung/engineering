@@ -27,6 +27,15 @@ include(
     "study:api-communication"
 )
 
+include(
+    "distributed-lock:core",
+    "distributed-lock:provider-redis",
+    "distributed-lock:spring",
+    "distributed-lock:spring-boot-autoconfigure",
+    "distributed-lock:spring-boot-starter",
+    "distributed-lock:test"
+)
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
