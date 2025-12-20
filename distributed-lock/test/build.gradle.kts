@@ -8,5 +8,6 @@ dependencies {
     api(project(":distributed-lock:core"))
     api(platform(libs.testcontainers.bom))
 
+    api(libs.assertj.core)
     api(libs.testcontainers.core)
 }

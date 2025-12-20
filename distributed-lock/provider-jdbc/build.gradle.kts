@@ -8,5 +8,6 @@ dependencies {
     api(project(":distributed-lock:core"))
 
     testImplementation(platform(libs.testcontainers.bom))
+    testImplementation(libs.mysql)
     testImplementation(libs.testcontainers.mysql)
 }

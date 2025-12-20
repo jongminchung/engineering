@@ -37,7 +37,10 @@ include(
     "distributed-lock:spring-boot-starter-redis",
     "distributed-lock:spring-boot-starter-jdbc",
     "distributed-lock:dependencies",
-    "distributed-lock:test"
+    "distributed-lock:test",
+    "distributed-lock:redis-integration-test",
+    "distributed-lock:bom-verifier",
+    "distributed-lock:jdbc-integration-test"
 )
 
 dependencyResolutionManagement {

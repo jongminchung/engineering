@@ -11,4 +11,6 @@ dependencies {
     api(project(":distributed-lock:provider-jdbc"))
 
     api("org.springframework.boot:spring-boot-starter")
+
+    testImplementation("org.springframework.boot:spring-boot-test")
 }

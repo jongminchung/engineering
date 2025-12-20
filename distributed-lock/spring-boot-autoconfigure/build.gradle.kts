@@ -12,10 +12,14 @@ dependencies {
 
     compileOnly(project(":distributed-lock:provider-redis"))
     compileOnly(project(":distributed-lock:provider-jdbc"))
+    compileOnly(libs.redisson)
 
     implementation("org.springframework.boot:spring-boot-autoconfigure")
+    annotationProcessor(platform("org.springframework.boot:spring-boot-dependencies:${libs.versions.springBoot.get()}"))
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
     testImplementation("org.springframework.boot:spring-boot-test")
+    testImplementation(project(":distributed-lock:provider-redis"))
+    testImplementation(project(":distributed-lock:provider-jdbc"))
     testImplementation(libs.redisson)
 }

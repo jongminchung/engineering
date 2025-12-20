@@ -11,4 +11,7 @@ dependencies {
     api(project(":distributed-lock:provider-redis"))
 
     api("org.springframework.boot:spring-boot-starter")
+
+    testImplementation("org.springframework.boot:spring-boot-test")
+    testImplementation(libs.redisson)
 }

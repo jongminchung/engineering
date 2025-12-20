@@ -44,13 +44,11 @@ class DistributedLockAutoConfigurationTest {
 
     private static RedissonClient redissonClient() {
         return (RedissonClient) Proxy.newProxyInstance(
-                RedissonClient.class.getClassLoader(),
-                new Class[] {RedissonClient.class},
-                (proxy, method, args) -> null);
+                RedissonClient.class.getClassLoader(), new Class[] {RedissonClient.class}, (proxy, _, args) -> null);
     }
 
     private static DataSource dataSource() {
         return (DataSource) Proxy.newProxyInstance(
-                DataSource.class.getClassLoader(), new Class[] {DataSource.class}, (proxy, method, args) -> null);
+                DataSource.class.getClassLoader(), new Class[] {DataSource.class}, (proxy, _, args) -> null);
     }
 }

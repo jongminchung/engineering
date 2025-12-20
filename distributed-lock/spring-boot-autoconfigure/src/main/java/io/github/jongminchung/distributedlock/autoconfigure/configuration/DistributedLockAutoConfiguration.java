@@ -1,11 +1,15 @@
 package io.github.jongminchung.distributedlock.autoconfigure.configuration;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 
+import io.github.jongminchung.distributedlock.autoconfigure.customizer.LockCustomizer;
 import io.github.jongminchung.distributedlock.autoconfigure.properties.DistributedLockProperties;
+import io.github.jongminchung.distributedlock.autoconfigure.support.CustomizingDistributedLock;
 import io.github.jongminchung.distributedlock.core.api.DistributedLock;
 import io.github.jongminchung.distributedlock.core.key.LockKeyStrategy;
 import io.github.jongminchung.distributedlock.core.key.SimpleLockKeyStrategy;
@@ -47,5 +51,13 @@ public class DistributedLockAutoConfiguration {
     public DistributedLockAspect distributedLockAspect(
             DistributedLock distributedLock, LockKeyResolver lockKeyResolver) {
         return new DistributedLockAspect(distributedLock, lockKeyResolver);
+    }
+
+    @Bean
+    @Primary
+    @ConditionalOnBean({DistributedLock.class, LockCustomizer.class})
+    public DistributedLock customizedDistributedLock(
+            DistributedLock distributedLock, java.util.List<LockCustomizer> customizers) {
+        return new CustomizingDistributedLock(distributedLock, customizers);
     }
 }

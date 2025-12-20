@@ -7,11 +7,10 @@ import java.util.Optional;
 import javax.sql.DataSource;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -20,13 +19,12 @@ import io.github.jongminchung.distributedlock.core.api.LockRequest;
 import io.github.jongminchung.distributedlock.core.key.LockKey;
 import io.github.jongminchung.distributedlock.provider.jdbc.config.JdbcLockProviderConfig;
 
-@Testcontainers
 class JdbcDistributedLockTest {
-    @Container
     private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:8.4.0");
 
     @BeforeAll
     static void setUpSchema() throws Exception {
+        MYSQL.start();
         try (Connection connection = createDataSource().getConnection();
                 Statement statement = connection.createStatement()) {
             statement.executeUpdate("create table if not exists distributed_locks ("
@@ -36,6 +34,11 @@ class JdbcDistributedLockTest {
                     + "locked_at timestamp(6) not null"
                     + ")");
         }
+    }
+
+    @AfterAll
+    static void tearDown() {
+        MYSQL.stop();
     }
 
     @Test

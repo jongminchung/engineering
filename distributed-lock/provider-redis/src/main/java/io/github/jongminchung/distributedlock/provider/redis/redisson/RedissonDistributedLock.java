@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.RedisTimeoutException;
 
 import io.github.jongminchung.distributedlock.core.api.DistributedLock;
 import io.github.jongminchung.distributedlock.core.api.LockHandle;
@@ -44,6 +45,12 @@ public class RedissonDistributedLock implements DistributedLock {
             throw new LockAcquisitionException(
                     "Interrupted while acquiring lock: " + request.key().value(), ex);
         } catch (RuntimeException ex) {
+            if (isTimeoutException(ex)) {
+                throw new LockTimeoutException(
+                        "Failed to acquire lock within wait time: "
+                                + request.key().value(),
+                        ex);
+            }
             throw new LockAcquisitionException(
                     "Failed to acquire lock: " + request.key().value(), ex);
         }
@@ -53,14 +60,30 @@ public class RedissonDistributedLock implements DistributedLock {
     public Optional<LockHandle> tryAcquire(LockRequest request) {
         RLock lock = obtainLock(request);
         Duration leaseTime = resolveLeaseTime(request);
-        boolean acquired = lock.tryLock();
+        boolean acquired;
+        try {
+            if (!leaseTime.isZero() && !leaseTime.isNegative()) {
+                acquired = lock.tryLock(0, leaseTime.toMillis(), TimeUnit.MILLISECONDS);
+            } else {
+                acquired = lock.tryLock();
+            }
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+            throw new LockAcquisitionException(
+                    "Interrupted while acquiring lock: " + request.key().value(), ex);
+        }
         if (!acquired) {
             return Optional.empty();
         }
-        if (!leaseTime.isZero() && !leaseTime.isNegative()) {
-            lock.expire(leaseTime);
-        }
         return Optional.of(new RedissonLockHandle(request.key(), lock));
+    }
+
+    private boolean isTimeoutException(RuntimeException ex) {
+        if (ex instanceof RedisTimeoutException) {
+            return true;
+        }
+        Throwable cause = ex.getCause();
+        return cause instanceof RedisTimeoutException;
     }
 
     private RLock obtainLock(LockRequest request) {
