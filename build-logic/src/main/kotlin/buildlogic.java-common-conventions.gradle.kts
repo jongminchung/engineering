@@ -2,13 +2,16 @@
 
 plugins {
     java
-
     id("com.diffplug.spotless")
     id("io.github.jongminchung.spotless.convention")
 }
 
 repositories {
     mavenCentral()
+}
+
+dependencies {
+    implementation(rootProjectLibs.findLibrary("jspecify").get())
 }
 
 testing {

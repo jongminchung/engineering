@@ -7,6 +7,7 @@ spotless = "8.1.0"
 # Spring Boot
 springBoot = "4.0.1"
 springDependencyManagement = "1.1.7"
+jspecify = "1.0.0"
 
 # Testing
 junit = "6.0.1"
@@ -39,6 +40,7 @@ testcontainers-kafka = { module = "org.testcontainers:testcontainers-kafka" }
 # Infra
 mysql = { module = "com.mysql:mysql-connector-j", version.ref = "mysql" }
 spring-kafka = { module = "org.springframework.kafka:spring-kafka", version = "3.1.1" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
 
 # Redis
 redisson = { module = "org.redisson:redisson", version.ref = "redisson" }
