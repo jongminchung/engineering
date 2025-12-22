@@ -1,10 +1,11 @@
 package io.github.jongminchung.study.infra.postgresql.phase1;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -28,8 +29,7 @@ public class User {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    protected User() {
-    }
+    protected User() {}
 
     User(String username, String email) {
         this.username = username;
@@ -43,4 +43,3 @@ public class User {
         this.updatedAt = LocalDateTime.now();
     }
 }
-
