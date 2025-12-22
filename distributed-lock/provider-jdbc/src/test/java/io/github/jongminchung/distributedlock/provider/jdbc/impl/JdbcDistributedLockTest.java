@@ -10,7 +10,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.mysql.MySQLContainer;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -20,7 +20,7 @@ import io.github.jongminchung.distributedlock.core.key.LockKey;
 import io.github.jongminchung.distributedlock.provider.jdbc.config.JdbcLockProviderConfig;
 
 class JdbcDistributedLockTest {
-    private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:8.4.0");
+    private static final MySQLContainer MYSQL = new MySQLContainer("mysql:8.4.0");
 
     @BeforeAll
     static void setUpSchema() throws Exception {

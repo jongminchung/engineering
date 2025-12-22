@@ -35,8 +35,6 @@ class SpringBootStarterTest {
 
     private static RedissonClient redissonClient() {
         return (RedissonClient) Proxy.newProxyInstance(
-                RedissonClient.class.getClassLoader(),
-                new Class[] {RedissonClient.class},
-                (proxy, method, args) -> null);
+                RedissonClient.class.getClassLoader(), new Class[] {RedissonClient.class}, (proxy, _, args) -> null);
     }
 }

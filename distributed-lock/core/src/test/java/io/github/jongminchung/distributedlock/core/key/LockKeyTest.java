@@ -9,6 +9,6 @@ class LockKeyTest {
         LockKey key = LockKey.of("order:1");
 
         Assertions.assertThat(key.value()).isEqualTo("order:1");
-        Assertions.assertThat(key.toString()).isEqualTo("order:1");
+        Assertions.assertThat(key).hasToString("order:1");
     }
 }

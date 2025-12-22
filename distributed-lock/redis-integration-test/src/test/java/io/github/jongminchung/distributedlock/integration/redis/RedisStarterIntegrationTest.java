@@ -2,13 +2,7 @@ package io.github.jongminchung.distributedlock.integration.redis;
 
 import java.time.Duration;
 import java.util.Optional;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterAll;
@@ -53,7 +47,7 @@ class RedisStarterIntegrationTest {
     @Nested
     class WhenRedisIsAvailable {
         @Test
-        void acquiresAndReacquiresLock() throws ExecutionException, InterruptedException {
+        void acquiresAndReacquiresLock() {
             contextRunner.run(context -> {
                 RedissonClient client = context.getBean(RedissonClient.class);
                 ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -79,7 +73,7 @@ class RedisStarterIntegrationTest {
         }
 
         @Test
-        void timesOutWhenLockHeld() throws ExecutionException, InterruptedException, TimeoutException {
+        void timesOutWhenLockHeld() {
             contextRunner.run(context -> {
                 RedissonClient client = context.getBean(RedissonClient.class);
                 ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -95,7 +89,7 @@ class RedisStarterIntegrationTest {
                         entered.countDown();
                         try {
                             release.await();
-                        } catch (InterruptedException ex) {
+                        } catch (InterruptedException _) {
                             Thread.currentThread().interrupt();
                         } finally {
                             handle.release();
@@ -119,7 +113,7 @@ class RedisStarterIntegrationTest {
         }
 
         @Test
-        void reacquiresAfterLeaseExpiry() throws ExecutionException, InterruptedException {
+        void reacquiresAfterLeaseExpiry() {
             contextRunner.run(context -> {
                 RedissonClient client = context.getBean(RedissonClient.class);
                 ExecutorService executor = Executors.newSingleThreadExecutor();

@@ -7,6 +7,6 @@ public final class RedisContainerSupport {
     private RedisContainerSupport() {}
 
     public static GenericContainer<?> createRedis() {
-        return new GenericContainer<>(DockerImageName.parse("redis:7.2-alpine")).withExposedPorts(6379);
+        return new GenericContainer(DockerImageName.parse("redis:7.2-alpine")).withExposedPorts(6379);
     }
 }

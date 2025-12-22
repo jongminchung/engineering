@@ -23,7 +23,7 @@ import io.github.jongminchung.distributedlock.provider.redis.config.RedisLockPro
 
 class RedissonDistributedLockTest {
     private static final GenericContainer<?> REDIS =
-            new GenericContainer<>(DockerImageName.parse("redis:7.2-alpine")).withExposedPorts(6379);
+            new GenericContainer(DockerImageName.parse("redis:7.2-alpine")).withExposedPorts(6379);
 
     @BeforeAll
     static void startRedis() {

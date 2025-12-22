@@ -9,7 +9,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import javax.sql.DataSource;
 
 import org.assertj.core.api.Assertions;
@@ -19,7 +18,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.mysql.MySQLContainer;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -32,7 +31,7 @@ import io.github.jongminchung.distributedlock.core.exception.LockTimeoutExceptio
 import io.github.jongminchung.distributedlock.core.key.LockKey;
 
 class JdbcStarterIntegrationTest {
-    private static final MySQLContainer<?> MYSQL = new MySQLContainer<>("mysql:8.4.0");
+    private static final MySQLContainer MYSQL = new MySQLContainer("mysql:8.4.0");
 
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
             .withConfiguration(
@@ -72,7 +71,7 @@ class JdbcStarterIntegrationTest {
         }
 
         @Test
-        void timesOutWhenLockHeld() throws InterruptedException, TimeoutException {
+        void timesOutWhenLockHeld() {
             contextRunner.run(context -> {
                 DistributedLock distributedLock = context.getBean(DistributedLock.class);
                 ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -104,7 +103,7 @@ class JdbcStarterIntegrationTest {
                     release.countDown();
                     try {
                         holder.get(2, TimeUnit.SECONDS);
-                    } catch (InterruptedException ex) {
+                    } catch (InterruptedException _) {
                         Thread.currentThread().interrupt();
                     } catch (java.util.concurrent.ExecutionException ex) {
                         throw new IllegalStateException(ex);
@@ -116,7 +115,7 @@ class JdbcStarterIntegrationTest {
         }
 
         @Test
-        void reacquiresAfterLeaseExpiry() throws InterruptedException {
+        void reacquiresAfterLeaseExpiry() {
             contextRunner.run(context -> {
                 DistributedLock distributedLock = context.getBean(DistributedLock.class);
                 LockRequest request =
