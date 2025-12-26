@@ -22,5 +22,4 @@ public abstract class BaseIntegrationTest {
         registry.add("spring.datasource.username", mysql::getUsername);
         registry.add("spring.datasource.password", mysql::getPassword);
     }
-
 }
