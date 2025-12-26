@@ -42,6 +42,12 @@ include(
     "distributed-lock:jdbc-integration-test"
 )
 
+buildCache {
+    local {
+        directory = file("${rootDir}/.gradle/build-cache")
+    }
+}
+
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
