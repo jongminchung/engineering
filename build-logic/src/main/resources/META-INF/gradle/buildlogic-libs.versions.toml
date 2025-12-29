@@ -1,0 +1,46 @@
+# build-logic에서 내부적으로 libs를 가져와서 사용하기에 사용되는 추적이 안될 수도 있지만 사용하고 있는 라이브러리 들이 존재함
+
+[versions]
+java = "25"
+spotless = "8.1.0"
+
+# Spring Boot
+springBoot = "4.0.1"
+springDependencyManagement = "1.1.7"
+jspecify = "1.0.0"
+
+# Testing
+junit = "6.0.1"
+assertj = "3.27.6"
+testcontainers = "2.0.3"
+
+# Redis
+redisson = "4.0.0"
+
+# Infra
+postgresql = "42.7.4"
+mysql = "8.4.0"
+
+[libraries]
+spring-boot-gradle-plugin = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "springBoot" }
+spring-dependency-management-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springDependencyManagement" }
+
+spotless-plugin = { module = "com.diffplug.spotless:com.diffplug.spotless.gradle.plugin", version.ref = "spotless" }
+spotless-convention-plugin = { module = "io.github.jongminchung.spotless.convention:io.github.jongminchung.spotless.convention.gradle.plugin", version = "0.0.2" }
+
+# Testing
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+awaitility = { module = "org.awaitility:awaitility", version = "4.2.0" }
+
+testcontainers-bom = { module = "org.testcontainers:testcontainers-bom", version.ref = "testcontainers" }
+testcontainers-core = { module = "org.testcontainers:testcontainers" }
+testcontainers-mysql = { module = "org.testcontainers:testcontainers-mysql" }
+testcontainers-kafka = { module = "org.testcontainers:testcontainers-kafka" }
+
+# Infra
+mysql = { module = "com.mysql:mysql-connector-j", version.ref = "mysql" }
+spring-kafka = { module = "org.springframework.kafka:spring-kafka", version = "3.1.1" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+
+# Redis
+redisson = { module = "org.redisson:redisson", version.ref = "redisson" }

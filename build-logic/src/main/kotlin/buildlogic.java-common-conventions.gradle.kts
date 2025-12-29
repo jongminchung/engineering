@@ -12,11 +12,11 @@ repositories {
 }
 
 dependencies {
-    implementation(rootProjectLibs.findLibrary("jspecify").get())
+    implementation(buildlogicLibs.findLibrary("jspecify").get())
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(rootProjectLibs.findVersion("java").get().requiredVersion.toInt())
+        languageVersion = JavaLanguageVersion.of(buildlogicLibs.findVersion("java").get().requiredVersion.toInt())
     }
 }

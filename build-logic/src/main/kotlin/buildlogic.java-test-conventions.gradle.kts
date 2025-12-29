@@ -8,10 +8,10 @@ plugins {
 testing {
     suites {
         val test by getting(JvmTestSuite::class) {
-            useJUnitJupiter(rootProjectLibs.findVersion("junit").get().requiredVersion)
+            useJUnitJupiter(buildlogicLibs.findVersion("junit").get().requiredVersion)
 
             dependencies {
-                implementation(rootProjectLibs.findLibrary("assertj-core").get())
+                implementation(buildlogicLibs.findLibrary("assertj-core").get())
             }
 
             targets.all {
@@ -22,7 +22,7 @@ testing {
         }
 
         val integrationTest by registering(JvmTestSuite::class) {
-            useJUnitJupiter(rootProjectLibs.findVersion("junit").get().requiredVersion)
+            useJUnitJupiter(buildlogicLibs.findVersion("junit").get().requiredVersion)
 
             dependencies {
                 implementation(project())
