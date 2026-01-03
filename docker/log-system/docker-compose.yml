@@ -1,0 +1,30 @@
+services:
+  fluent-bit:
+    image: cr.fluentbit.io/fluent/fluent-bit
+    container_name: fluent-bit
+    restart: unless-stopped
+
+    user: "0:0" # root allows container log
+
+    environment:
+      # ES
+      - ES_HOST=es.example.com
+      - ES_PORT=9200
+      - ES_SCHEME=http
+      - ES_INDEX_PREFIX=docker-logs
+
+    volumes:
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+
+      # Fluentbit configuration monut
+      - ./fluent-bit/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      - ./fluent-bit/parsers.conf:/fluent-bit/etc/parsers.conf:ro
+
+      # 입력 상태(DB) + 출력 버퍼(파일시스템) 저장용(호스트 영속)
+      - fluentbit_data:/fluent-bit/state
+
+    ports:
+      - "2020:2020"
+
+volumes:
+  fluentbit_data:
