@@ -39,9 +39,8 @@ MD009:
 MD012:
   maximum: 1
 
-# Allow emphasis instead of headings? (Teams often dislike bold-as-heading)
-# Enable to discourage using **text** as pseudo-heading
-MD036: true
+# Allow emphasis instead of headings
+MD036: false
 
 # The first line of the file should be a top-level heading
 # If you have docs like CHANGELOG with badges/front-matter, consider disabling.
