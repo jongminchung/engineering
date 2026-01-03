@@ -42,9 +42,14 @@ include(
     "distributed-lock:jdbc-integration-test"
 )
 
+/**
+ * Local Build Cache
+ */
+val isCI = System.getenv("CI") == "true"
+
 buildCache {
     local {
-        directory = file("${rootDir}/.gradle/build-cache")
+        isEnabled = !isCI
     }
 }
 
