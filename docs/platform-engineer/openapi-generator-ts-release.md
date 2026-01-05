@@ -25,6 +25,7 @@ src/
 
 // 1) configuration 쪽은 이름 충돌 위험이 커서 alias로 고정하는 편이 안전함
 export {Configuration as OpenAPIConfiguration} from './gen/configuration'
+export type { ConfigurationParameters } from './gen/configuration';
 
 // 2) API 클래스/팩토리만 명시적으로 re-export
 export {
@@ -40,6 +41,39 @@ export type {
     AxiosPromise,
     RequestArgs,
 } from './gen/base'
+```
+
+```js
+// script/gen-index.js
+
+import fs from "node:fs";
+import path from "node:path";
+
+const GEN_API = path.resolve("src/gen/api.ts");
+const OUT_INDEX = path.resolve("src/index.ts");
+
+const apiTs = fs.readFileSync(GEN_API, "utf8");
+
+// `export class XxxApi`만 수집
+const apiClasses = [...apiTs.matchAll(/export class (\w+Api)\b/g)].map(m => m[1]);
+
+// 중복 제거 + 정렬(선택)
+const uniq = [...new Set(apiClasses)].sort();
+
+const lines = [
+    `// AUTO-GENERATED. DO NOT EDIT.`,
+    ``,
+    `export { Configuration } from './gen/configuration';`,
+    `export type { ConfigurationParameters } from './gen/configuration';`,
+    ``,
+    `export * from './gen/model';`, // model/index.ts가 없다면 별도 생성 필요
+    ``,
+    uniq.length ? `export { ${uniq.join(", ")} } from './gen/api';` : `// (no Api classes found)`,
+    ``,
+];
+
+fs.writeFileSync(OUT_INDEX, lines.join("\n"), "utf8");
+console.log(`Generated ${OUT_INDEX} with ${uniq.length} API classes`);
 ```
 
 ## tsdown 설정
