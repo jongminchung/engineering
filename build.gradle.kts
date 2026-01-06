@@ -16,6 +16,6 @@ tasks.register("pnpmInstall", Exec::class.java) {
 
 idea.project.settings {
     taskTriggers {
-        afterSync(tasks.getByName("pnpmInstall"))
+        afterSync(tasks.named("pnpmInstall"))
     }
 }

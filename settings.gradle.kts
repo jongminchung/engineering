@@ -45,7 +45,7 @@ include(
 /**
  * Local Build Cache
  */
-val isCI = System.getenv("CI") == "true"
+val isCI = providers.environmentVariable("CI").getOrElse("false") == "true"
 
 buildCache {
     local {
