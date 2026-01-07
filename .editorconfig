@@ -13,3 +13,10 @@ indent_style = space
 
 [{**.yml,**.json}]
 indent_size = 2
+
+[*.md]
+# 1. ordered list
+# (space이면 자동 포맷팅 때 space가 사라지고 `1. ordered list` 랑 depth가 같아짐)
+#   - unordered list
+indent_style = tab
+indent_size = 2
