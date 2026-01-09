@@ -79,7 +79,7 @@ app:
 
 ## 디렉터리 구조
 
-```
+```text
 study/api-communication
 ├── build.gradle.kts
 ├── README.md

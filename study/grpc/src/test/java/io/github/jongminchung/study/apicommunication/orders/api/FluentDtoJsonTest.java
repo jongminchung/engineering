@@ -1,18 +1,21 @@
 package io.github.jongminchung.study.apicommunication.orders.api;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.experimental.Accessors;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import tools.jackson.databind.ObjectMapper;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Getter;
+import lombok.experimental.Accessors;
+
+import tools.jackson.databind.ObjectMapper;
 
 @JsonTest
 class FluentDtoJsonTest {
@@ -41,20 +44,15 @@ class FluentDtoJsonTest {
 
     @Test
     void serializeFluentDto() {
-        var dto = new FluentOrderDto(
-            "beta",
-            new BigDecimal("19.99"),
-            false,
-            LocalDateTime.of(2024, 2, 3, 4, 5, 6)
-        );
+        var dto = new FluentOrderDto("beta", new BigDecimal("19.99"), false, LocalDateTime.of(2024, 2, 3, 4, 5, 6));
 
         var json = objectMapper.writeValueAsString(dto);
 
         assertThat(json)
-            .contains("\"customerId\":\"beta\"")
-            .contains("\"totalAmount\":19.99")
-            .contains("\"active\":false")
-            .contains("\"createdAt\":\"2024-02-03T04:05:06\"");
+                .contains("\"customerId\":\"beta\"")
+                .contains("\"totalAmount\":19.99")
+                .contains("\"active\":false")
+                .contains("\"createdAt\":\"2024-02-03T04:05:06\"");
     }
 
     @Getter
@@ -75,11 +73,10 @@ class FluentDtoJsonTest {
 
         @JsonCreator // deserialize
         FluentOrderDto(
-            @JsonProperty("customerId") String customerId,
-            @JsonProperty("totalAmount") BigDecimal totalAmount,
-            @JsonProperty("active") boolean active,
-            @JsonProperty("createdAt") LocalDateTime createdAt
-        ) {
+                @JsonProperty("customerId") String customerId,
+                @JsonProperty("totalAmount") BigDecimal totalAmount,
+                @JsonProperty("active") boolean active,
+                @JsonProperty("createdAt") LocalDateTime createdAt) {
             this.customerId = customerId;
             this.totalAmount = totalAmount;
             this.active = active;

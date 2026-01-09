@@ -15,18 +15,30 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
     implementation("io.grpc:grpc-services")
-    implementation("org.springframework.grpc:spring-grpc-server-web-spring-boot-starter")
+    implementation(
+        "org.springframework.grpc:spring-grpc-server-web-spring-boot-starter",
+    )
 
     testImplementation("org.springframework.grpc:spring-grpc-test")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-security-test")
-    testImplementation("org.springframework.boot:spring-boot-starter-validation-test")
+    testImplementation(
+        "org.springframework.boot:spring-boot-starter-webmvc-test",
+    )
+    testImplementation(
+        "org.springframework.boot:spring-boot-starter-security-test",
+    )
+    testImplementation(
+        "org.springframework.boot:spring-boot-starter-validation-test",
+    )
 }
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.grpc:spring-grpc-dependencies:${property("springGrpcVersion")}")
+        mavenBom(
+            "org.springframework.grpc:spring-grpc-dependencies:${property(
+                "springGrpcVersion",
+            )}",
+        )
     }
 }
 
