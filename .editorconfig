@@ -18,5 +18,7 @@ indent_size = 2
 # 1. ordered list
 # (space이면 자동 포맷팅 때 space가 사라지고 `1. ordered list` 랑 depth가 같아짐)
 #   - unordered list
+# markdownlint의 MD010 (no-hard-tabs) 규칙과 충돌을 피하기 위해
+# .markdownlint.yaml에서 MD010: false 설정이 필요함
 indent_style = tab
 indent_size = 2

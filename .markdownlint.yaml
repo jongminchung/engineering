@@ -48,4 +48,10 @@ MD041: true
 
 MD060: false
 
+# Allow hard tabs (necessary when EditorConfig specifies indent_style = tab)
 MD010: false
+
+# Indentation style: allow tabs for indentation
+MD007:
+  indent: 2
+  start_indented: false
