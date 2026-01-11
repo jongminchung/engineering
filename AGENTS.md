@@ -20,7 +20,7 @@
 - 빌드 산출물(`**/build/`)과 생성물은 커밋하지 않습니다.
 - 공통 스타일은 `.editorconfig`를 따릅니다.
 - Java 포맷팅은 Spotless(Gradle) 기준을 따릅니다.
-- 문서 포맷팅은 `pnpm run check:markdown` 기준을 따릅니다.
+- 문서 포맷팅은 `bun run check:markdown` 기준을 따릅니다.
 - 커밋 메시지는 Conventional Commits를 준수합니다.
 - 보안 정보(키, 토큰, 비밀번호)는 절대 저장소에 남기지 않습니다.
 
@@ -28,6 +28,6 @@
 
 - `./gradlew build` — 전체 모듈 빌드 및 테스트 실행.
 - `./gradlew test` — 전체 테스트 실행.
-- `pnpm install` — 문서/포맷팅 도구 설치.
-- `pnpm run check` — Biome 포맷/린트.
-- `pnpm run check:markdown` — Markdown 자동 정리.
+- `bun install` — 문서/포맷팅 도구 설치.
+- `bun run check` — Biome 포맷/린트.
+- `bun run check:markdown` — Markdown 자동 정리.

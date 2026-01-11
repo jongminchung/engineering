@@ -1,6 +1,0 @@
-packageManagerStrict: true
-packageManagerStrictVersion: false
-
-packages:
-  - "frontend/*"
-  - "platfrom/*"

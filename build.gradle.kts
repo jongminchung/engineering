@@ -5,17 +5,17 @@ plugins {
     id("org.jetbrains.gradle.plugin.idea-ext") version "1.3"
 }
 
-tasks.register("pnpmInstall", Exec::class.java) {
+tasks.register("bunInstall", Exec::class.java) {
     group = "build"
-    description = "Install pnpm dependencies"
+    description = "Install dependencies using bun"
 
     inputs.file("package.json")
-    commandLine = listOf("bash", "-lc", "pnpm install")
+    commandLine = listOf("bash", "-lc", "bun install")
     outputs.dir("node_modules")
 }
 
 idea.project.settings {
     taskTriggers {
-        afterSync(tasks.getByName("pnpmInstall"))
+        afterSync(tasks.getByName("bunInstall"))
     }
 }

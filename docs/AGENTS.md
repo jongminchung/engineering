@@ -3,7 +3,7 @@
 ## Document Rules
 
 - `음슴체`로 작성해야 함.
-    - 예: xx 트레이드 오프가 존재함. 그렇기에 A 기술을 채택함.
+  - 예: xx 트레이드 오프가 존재함. 그렇기에 A 기술을 채택함.
 
 ## Project Structure & Module Organization
 
@@ -33,7 +33,7 @@
 
 ## Validation
 
-- Run `pnpm run check:markdown` before submitting large edits.
+- Run `bun run check:markdown` before submitting large edits.
 - Spot-check links to ensure they resolve from the document location.
 
 ## Commit & Pull Request Guidelines
