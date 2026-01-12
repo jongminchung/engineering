@@ -2,18 +2,24 @@
 
 _**Table of Contents**_
 
+<!-- @formatter:off -->
 <!-- TOC -->
-
-- [Code CLI](#code-cli)
- 	- [SDLC (Software Development Life Cycle)](#sdlc-software-development-life-cycle)
- 	- [CLI](#cli)
-
+* [Code CLI](#code-cli)
+  * [SDLC (Software Development Life Cycle)](#sdlc-software-development-life-cycle)
+  * [CLI](#cli)
+  * [rules](#rules)
+  * [AGENTS.md](#agentsmd)
+  * [Custom Prompts](#custom-prompts)
+  * [Skills](#skills)
 <!-- TOC -->
+<!-- @formatter:on -->
+<!-- markdownlint-enable -->
 
 - 요청의 성공 여부를 검증할 수 있도록 합니다.
- 	- 문제를 제공, 린팅, 검증 단계를 제공합니다.
+	- 문제를 제공, 린팅, 검증 단계를 제공합니다.
+
 - 복잡한 작업을 작고 집중된 단계로 나눠야 합니다.
- 	- 작업을 어떻게 나눠야 할지 잘 모르겠다면, CLI로 계획을 제안해 달라고 요청합니다.
+	- 작업을 어떻게 나눠야 할지 잘 모르겠다면, CLI로 계획을 제안해 달라고 요청합니다.
 
 ---
 
@@ -69,6 +75,8 @@ Building an AI-Native Engineering Team에 대한 Codex CLI팀의 문서[^1]입�
 ```toml
 model = "gpt-5.2-codex"
 model_reasoning_effort = "medium"
+
+[profiles.fa]
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 ```
@@ -77,5 +85,78 @@ sandbox_mode = "danger-full-access"
 # .zshrc
 alias rm='rm -i'
 ```
+
+---
+
+## rules
+
+```text
+# ~/.codex/rules/rm.rules
+
+pattern = ["rm"]
+decision = "prompt"
+justification = "Deletion of files always requires confirmation"
+
+# 검증
+codex execpolicy check --rules ~/.codex/rules/rm.rules --pretty -- rm -rf build
+```
+
+---
+
+## AGENTS.md
+
+최대한 직접적으로 Codex CLI나 CLAUDE에게 직접 질의해서 사용한다.
+
+---
+
+## Custom Prompts
+
+`~/.codex/prompts/add-tests.md`
+
+```markdown
+---
+description: Add meaningful tests for changes
+---
+
+Add tests for the referenced code.
+
+Scope:
+
+- Target module: mention files
+
+Priority:
+
+1) Unit tests for business logic
+2) Integration tests only if behavior crosses DB/queue
+
+Constraints:
+
+- No real network calls
+- Prefer Testcontainers when needed
+
+Output:
+
+If target is java code:
+
+- Place tests under same package structure of the code
+- Use JUnit Jupiter + AssertJ + Testcontainers
+
+If target is typescript code:
+
+- Place tests under same package structure of the code
+- Use Jest + Testcontainers
+
+If tests are not feasible:
+
+- Explain why and suggest a lightweight alternative
+```
+
+---
+
+## Skills
+
+TODO
+
+---
 
 [^1]: <https://developers.openai.com/codex/guides/build-ai-native-engineering-team>
