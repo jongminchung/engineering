@@ -2,9 +2,8 @@
 
 plugins {
     java
-    id("com.diffplug.spotless")
-    id("io.github.jongminchung.spotless.convention")
     id("buildlogic.java-test-conventions")
+    id("buildlogic.formatter-conventions")
 }
 
 repositories {

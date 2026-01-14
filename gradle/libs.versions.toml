@@ -25,7 +25,6 @@ spring-boot-gradle-plugin = { module = "org.springframework.boot:spring-boot-gra
 spring-dependency-management-plugin = { module = "io.spring.gradle:dependency-management-plugin", version.ref = "springDependencyManagement" }
 
 spotless-plugin = { module = "com.diffplug.spotless:com.diffplug.spotless.gradle.plugin", version.ref = "spotless" }
-spotless-convention-plugin = { module = "io.github.jongminchung.spotless.convention:io.github.jongminchung.spotless.convention.gradle.plugin", version = "0.0.2" }
 
 # Testing
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }

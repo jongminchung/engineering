@@ -2,6 +2,8 @@ import org.jetbrains.gradle.ext.settings
 import org.jetbrains.gradle.ext.taskTriggers
 
 plugins {
+    java
+    id("buildlogic.formatter-conventions")
     id("org.jetbrains.gradle.plugin.idea-ext") version "1.3"
 }
 
