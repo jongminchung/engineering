@@ -13,5 +13,5 @@ indent_style = space
 [*.md]
 indent_size = 4
 
-[*.{java,kt,kts}]
+[*.{java,kt,kts,py}]
 indent_size = 4

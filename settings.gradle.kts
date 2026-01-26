@@ -36,10 +36,6 @@ include(
     "backend:distributed-lock:jdbc-integration-test",
 )
 
-include(
-    "coding-test",
-)
-
 buildCache {
     local {
         directory = file("$rootDir/.gradle/build-cache")
