@@ -102,7 +102,7 @@ spec:
   selector:
     app: nginx
   ports:
-    - name: https
+    - name: grafana
       port: 443
       protocol: TCP
       targetPort: 80
